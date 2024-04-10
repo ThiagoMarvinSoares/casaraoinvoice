@@ -1,3 +1,5 @@
+use client;
+
 import { useRef } from 'react';
 
 export default function Home() {
@@ -31,7 +33,7 @@ export default function Home() {
       console.error('Erro ao gerar o PDF:', error);
     }
   };
-  
+
   return (
     <div>
         <title>Gerador de Garantia</title>
