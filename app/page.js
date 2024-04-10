@@ -1,6 +1,3 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
 export default function Home() {
   return (
     <div>
@@ -8,12 +5,13 @@ export default function Home() {
       <div className="header">
         <img src="CasarãoHeader.jpg" alt="" />
       </div>
-      <h2>Gerador de garantia</h2>
+      <h1>Gerador de garantia</h1>
       <div className="formWrap">
         <form
           id="invoiceForm"
-          action="https://geradordegarantia.vercel.app/generate-pdf"
+          action="/api/generatepdf"
           method="post"
+          autoComplete="off"
         >
           <div className="group">
             <div className="firstGroupChild">
