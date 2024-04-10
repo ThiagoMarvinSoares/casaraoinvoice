@@ -1,4 +1,37 @@
+import { useRef } from 'react';
+
 export default function Home() {
+
+  const formRef = useRef(null);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(formRef.current);
+
+    try {
+      const response = await fetch('/api/generatepdf', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erro: ${response.statusText}`);
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'generated.pdf';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Erro ao gerar o PDF:', error);
+    }
+  };
+  
   return (
     <div>
         <title>Gerador de Garantia</title>
