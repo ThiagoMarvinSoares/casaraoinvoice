@@ -84,7 +84,8 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'application/pdf');
     doc.pipe(res);
   } else {
-    res.status(405).end();
+    res.setHeader('Allow', ['POST']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 };
 
