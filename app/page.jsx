@@ -1,39 +1,30 @@
-"use client";
-
-import { useRef } from 'react';
-
 export default function Home() {
-
-  const formRef = useRef(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(formRef.current);
+    const formData = new FormData(event.target);
+    const formProps = Object.fromEntries(formData);
 
     try {
-      const response = await fetch('/api/generatepdf', {
+      const response = await fetch('https://casaraoinvoice.vercel.app/api/generatepdf', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formProps),
       });
 
-      if (!response.ok) {
-        throw new Error(`Erro: ${response.statusText}`);
+      if (response.ok) {
+        // Aqui você pode tratar a resposta, como fazer o download do PDF
+      } else {
+        throw new Error('Falha ao gerar o PDF');
       }
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'generated.pdf';
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Erro ao gerar o PDF:', error);
     }
   };
-  
+
   return (
     <div>
         <title>Gerador de Garantia</title>
