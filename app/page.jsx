@@ -2,6 +2,7 @@ export default function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('Form submitted');
   
     const formData = new FormData(event.target);
   
