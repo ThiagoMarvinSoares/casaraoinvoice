@@ -40,6 +40,7 @@ export default function Home() {
         <form
           id="invoiceForm"
           autoComplete="off"
+          onSubmit={handleSubmit}
         >
           <div className="group">
             <div className="firstGroupChild">
