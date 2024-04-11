@@ -7,7 +7,7 @@ export default function Home() {
     const formProps = Object.fromEntries(formData);
 
     try {
-      const response = await fetch('https://casaraoinvoice.vercel.app/api/generatepdf', {
+      const response = await fetch('/api/generatepdf', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -16,7 +16,14 @@ export default function Home() {
       });
 
       if (response.ok) {
-        // Aqui você pode tratar a resposta, como fazer o download do PDF
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'generated.pdf'; // Nome do arquivo para download
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
       } else {
         throw new Error('Falha ao gerar o PDF');
       }
