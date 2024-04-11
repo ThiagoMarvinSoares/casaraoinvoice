@@ -38,8 +38,6 @@ export default function Home() {
       <div className="formWrap">
         <form
           id="invoiceForm"
-          action="/api/generatepdf"
-          method="post"
           autoComplete="off"
         >
           <div className="group">
