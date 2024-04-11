@@ -2,19 +2,15 @@ export default function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const formData = new FormData(event.target);
-    const formProps = Object.fromEntries(formData);
-
+  
     try {
       const response = await fetch('/api/generatepdf', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formProps),
+        body: formData,
       });
-
+  
       if (response.ok) {
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
