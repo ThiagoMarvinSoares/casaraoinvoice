@@ -2,6 +2,7 @@ export default function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('Form submitted');
   
     const formData = new FormData(event.target);
   
@@ -39,6 +40,7 @@ export default function Home() {
         <form
           id="invoiceForm"
           autoComplete="off"
+          onSubmit={handleSubmit}
         >
           <div className="group">
             <div className="firstGroupChild">
