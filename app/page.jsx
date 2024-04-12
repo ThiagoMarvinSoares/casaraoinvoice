@@ -5,23 +5,21 @@ export default function Home() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const form = event.target;
     const data = {
-        produto: form.produto.value,
-        marcaVeiculo: form.marcaVeiculo.value,
-        modelo: form.modelo.value,
-        placa: form.placa.value,
-        periodoGarantia: form.periodoGarantia.value,
-        dataInst: form.dataInst.value,
-        nomeCliente: form.nomeCliente.value,
-        telefoneCliente: form.telefoneCliente.value,
-        emailCliente: form.emailCliente.value
+        produto: produto.value,
+        marcaVeiculo: marcaVeiculo.value,
+        modelo: modelo.value,
+        placa: placa.value,
+        periodoGarantia: periodoGarantia.value,
+        dataInst: dataInst.value,
+        nomeCliente: nomeCliente.value,
+        telefoneCliente: telefoneCliente.value,
+        emailCliente: emailCliente.value
     };
-  
     try {
       const response = await fetch('/api/generatepdf', {
         method: 'POST',
-        header: {
+        headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
@@ -158,7 +156,7 @@ export default function Home() {
               <input
                 type="text"
                 className="fields"
-                maxLength="25"
+                maxLength="32"
                 id="emailCliente"
                 name="emailCliente"
               />
