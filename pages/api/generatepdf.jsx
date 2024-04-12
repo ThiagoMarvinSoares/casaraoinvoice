@@ -1,5 +1,6 @@
 import PDFDocument from 'pdfkit';
 import path from 'path';
+import { log } from 'console';
 
 
 const imagePath = path.join(process.cwd(), 'public/casaraoheader.jpg');
@@ -16,14 +17,21 @@ const rectHeight = 160; // Altura do retângulo
 
 
 export default async (req, res) => {
-  console.log(`Incoming request to ${req.url} with method ${req.method}`);
   if (req.method === 'POST') {
-    console.log('Received form data:', req.body); 
-    //let numeroGarantia = parseInt(fs.readFileSync('numeroGarantia.txt', 'utf8'));
-    //numeroGarantia++;
-    //fs.writeFileSync('numeroGarantia.txt', numeroGarantia.toString());
 
-    const { produto, marcaVeiculo, modelo, placa, periodoGarantia, dataIsnt, nomeCliente, telefoneCliente, emailCliente } = req.body;
+    //let { produto, marcaVeiculo, modelo, placa, periodoGarantia, dataInst, nomeCliente, telefoneCliente, emailCliente } = req.body;
+    console.log(req.body);
+
+    const produto = req.body.produto;
+    const marcaVeiculo = req.body.marcaVeiculo;
+    const modelo = req.body.modelo;
+    const placa = req.body.placa;
+    const periodoGarantia = req.body.periodoGarantia;
+    const dataInst = req.body.dataInst;
+    const nomeCliente = req.body.nomeCliente;
+    const telefoneCliente = req.body.telefoneCliente;
+    const emailCliente = req.body.emailCliente;
+    console.log(produto);
 
     const doc = new PDFDocument({ size: 'A4' });
     doc.fontSize(12);
@@ -46,7 +54,7 @@ export default async (req, res) => {
     doc.fillColor('black').fontSize(12).text(`Produto: ${produto}`, 55, 400);
     doc.fillColor('black').fontSize(12).text(`Placa: ${placa}`, 55, 440);
     doc.fillColor('black').fontSize(12).text(`Período de garantia: ${periodoGarantia}`, 240, 440);
-    doc.fillColor('black').fontSize(12).text(`Data: ${dataIsnt}`, 430, 440)
+    doc.fillColor('black').fontSize(12).text(`Data: ${dataInst}`, 430, 440)
     doc.fillColor('black').fontSize(12).text(`Marca: ${marcaVeiculo}`, 240, 400);
     doc.fillColor('black').fontSize(12).text(`Modelo: ${modelo}`, 430, 400);
 
