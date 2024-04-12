@@ -25,7 +25,7 @@ export default async (req, res) => {
     const doc = new PDFDocument({ size: 'A4' });
     doc.fontSize(12);
 
-    doc.image('public/CasarãoHeader.jpg', 0, 0, { width: 595.28 });
+    //doc.image('public/CasarãoHeader.jpg', 0, 0, { width: 595.28 });
 
     doc.fillColor('grey')
       .fontSize(12)
