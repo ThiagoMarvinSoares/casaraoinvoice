@@ -35,7 +35,7 @@ export default function Home() {
     <div>
         <title>Gerador de Garantia</title>
       <div className="header">
-        <img src="CasarãoHeader.jpg" alt="" />
+        <img src="casaraoheader.jpg" alt="" />
       </div>
       <h1>Gerador de garantia</h1>
       <div className="formWrap">
