@@ -1,4 +1,3 @@
-import fs from 'fs';
 import PDFDocument from 'pdfkit';
 
 const lorem = 'Parabéns por adquirir um produto de excelente qualidade! É com grande satisfação que o Casarão das Películas lhe dá as boas-vindas à nossa família de clientes. Agradecemos por escolher nossos serviços e temos o prazer de informar que a garantia da sua película já está confirmada.Estamos comprometidos em oferecer não apenas produtos de alta qualidade, mas também um atendimento ao cliente excepcional. Se tiver alguma dúvida ou precisar de assistência adicional, não hesite em entrar em contato conosco. Obrigado por confiar no Casarão das Películas. Estamos ansiosos para servi-lo novamente no futuro.';
@@ -12,8 +11,11 @@ const rectY = 610; // Posição Y do retângulo
 const rectWidth = 495.28; // Largura do retângulo (largura da página A4 - margens)
 const rectHeight = 160; // Altura do retângulo
 
+
 export default async (req, res) => {
+  console.log(`Incoming request to ${req.url} with method ${req.method}`);
   if (req.method === 'POST') {
+    console.log('Received form data:', req.body);
     //let numeroGarantia = parseInt(fs.readFileSync('numeroGarantia.txt', 'utf8'));
     //numeroGarantia++;
     //fs.writeFileSync('numeroGarantia.txt', numeroGarantia.toString());
