@@ -29,6 +29,9 @@ export default async (req, res) => {
     doc.fontSize(12);
 
     doc.image(imagePath, 0, 0, { width: 595.28 });
+=======
+    //doc.image('public/CasarãoHeader.jpg', 0, 0, { width: 595.28 });
+
 
     doc.fillColor('grey')
       .fontSize(12)
