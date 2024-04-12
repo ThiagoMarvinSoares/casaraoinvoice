@@ -4,14 +4,27 @@ export default function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Form submitted');
-  
-    const formData = new FormData(event.target);
+
+    const form = event.target;
+    const data = {
+        produto: form.produto.value,
+        marcaVeiculo: form.marcaVeiculo.value,
+        modelo: form.modelo.value,
+        placa: form.placa.value,
+        periodoGarantia: form.periodoGarantia.value,
+        dataInst: form.dataInst.value,
+        nomeCliente: form.nomeCliente.value,
+        telefoneCliente: form.telefoneCliente.value,
+        emailCliente: form.emailCliente.value
+    };
   
     try {
       const response = await fetch('/api/generatepdf', {
         method: 'POST',
-        body: formData,
+        header: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
       });
   
       if (response.ok) {
