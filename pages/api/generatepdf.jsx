@@ -93,8 +93,10 @@ export default async (req, res) => {
 
     doc.end();
 
-    res.setHeader('Content-Disposition', 'attachment; filename=generated.pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="TestFile.pdf"');
+  
     res.setHeader('Content-Type', 'application/pdf');
+
     doc.pipe(res);
   } else {
     res.setHeader('Allow', ['POST']);
