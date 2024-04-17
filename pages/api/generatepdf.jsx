@@ -4,7 +4,10 @@ import { log } from 'console';
 
 
 const imagePath = path.join(process.cwd(), 'public/casaraoheader.jpg');
-const iconOnePath = path.join(process.cwd(), 'public/manutencao.png');
+const imagePathBotton = path.join(process.cwd(), 'public/casaraofooter.jpg');
+const iconOnePath = path.join(process.cwd(), 'public/manutencao.jpg');
+const iconTwoPath = path.join(process.cwd(), 'public/warning.jpg');
+
 const lorem = 'Parabéns por adquirir um produto de excelente qualidade! É com grande satisfação que o Casarão das Películas lhe dá as boas-vindas à nossa família de clientes. Agradecemos por escolher nossos serviços e temos o prazer de informar que a garantia da sua película já está confirmada.Estamos comprometidos em oferecer não apenas produtos de alta qualidade, mas também um atendimento ao cliente excepcional. Se tiver alguma dúvida ou precisar de assistência adicional, não hesite em entrar em contato conosco. Obrigado por confiar no Casarão das Películas. Estamos ansiosos para servi-lo novamente no futuro.';
 const h1Title = 'Dados da instalação';
 const h2Title = 'Dados do cliente';
@@ -28,7 +31,6 @@ const secondItems = [
   'Esta garantia limitada não é transferível, apenas o comprador direto pode utilizar a certificação.',
   'A Só Películas não se responsabiliza pelos seguintes danos:Manutenção imprópria da película, Quebra de vidros, Quaisquer outros erros não associados à fabricação da película.',
   'Caso seja necessário aplicar a mudança de película proveniente de defeitos, a substituição não expande o período de garantia.',
-  'Em nenhum caso Só Películas será responsável por outros custos, despesas, perdas ou danos (independente de serem considerados direitos especiais, consequências ou acidentais) que não são de qualquer modo referente à película.',
 ];
 
 
@@ -113,7 +115,7 @@ export default async (req, res) => {
         align: 'left',
       });
 
-      doc.image(iconOnePath, 355, 43, { width: 12 });
+      doc.image(iconOnePath, 355, 42, { width: 14 });
 
       let yPos = 85;
 
@@ -134,6 +136,8 @@ export default async (req, res) => {
         align: 'left',
       });
 
+      doc.image(iconTwoPath, 250, 381, { width: 14 });
+
       let yPosSecond = 410;
       secondItems.forEach(item => {
         doc.fillColor('black')
@@ -147,9 +151,11 @@ export default async (req, res) => {
 
       doc.fillColor('#dd2e38')
       .fontSize(12)
-      .text('Em nenhum caso Só Películas será responsável por outros custos, despesas, perdas ou danos(independente de serem considerados direitos especiais, consequências ou acidentais) que não são de qualquer modo referente à película.', 40, 600, {
+      .text('Em nenhum caso Casarão das peliculas será responsável por outros custos, despesas, perdas ou danos(independente de serem considerados direitos especiais, consequências ou acidentais) que não são de qualquer modo referente à película.', 40, 580, {
         align: 'center',
       });
+
+      doc.image(imagePathBotton, 0, 640, { width: 595.28 });
 
 
     doc.end();
