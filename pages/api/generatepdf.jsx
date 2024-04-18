@@ -1,7 +1,5 @@
 import PDFDocument from 'pdfkit';
 import path from 'path';
-import { log } from 'console';
-
 
 const imagePath = path.join(process.cwd(), 'public/casaraoheader.jpg');
 const imagePathBotton = path.join(process.cwd(), 'public/casaraofooter.jpg');
@@ -16,10 +14,10 @@ const textoGarantia = 'Na ocorrência de falhas nos filmes, você deverá encami
 const items = [
   "O processo de instalação da película exige um período apropriado de secagem, podendo apresentar variações de acordo com as condições do tempo",
   "Não limpe a película nos próximos 10 dias após a instalação.",
-  "Não manuseie os vidros até que estejam secos, por pelo menos 5 dias.",
+  "Não manuseie os vidros até que estejam secos, por pelo menos 24 horas.",
   "Utilize sempre materiais novos, limpos e macios para lavar e secar a superfície da película.",
   "Limpezas periódicas são recomendadas para manter as propriedades de durabilidade do material.",
-  "Nas aplicações automotivas, não abra as janelas por um período mínimo de 5 dias após a aplicação, para a perfeita adesão do filme ao vidro.",
+  "Nas aplicações automotivas, não abra as janelas por um período mínimo de 24 horas após a aplicação, para a perfeita adesão do filme ao vidro.",
   "Qualquer produto instalado sobre a película poderá danificar sua estrutura. Não aplique qualquer material, adesivo, fitas, GPS ou qualquer outro equipamento sobre a película.",
   "Nunca limpar os vidros quando o mesmo estiver quente. Se possível, limpá-los na parte da manhã ou no final do dia, para evitar danos à camada resistente à abrasão.",
   "Nenhum material ou ferramenta agressivo, cortante, perfurante ou de marcação deve ser utilizado sobre o produto, implicando na perda da garantia.",
@@ -29,7 +27,7 @@ const items = [
 const secondItems = [
   'Casarão das Películas substitui produtos defeituosos, incluindo falhas como bolhas ou delaminação, dentro do prazo de garantia.',
   'Esta garantia limitada não é transferível, apenas o comprador direto pode utilizar a certificação.',
-  'A Só Películas não se responsabiliza pelos seguintes danos:Manutenção imprópria da película, Quebra de vidros, Quaisquer outros erros não associados à fabricação da película.',
+  'Casarão das Películas não se responsabiliza pelos seguintes danos:Manutenção imprópria da película, Quebra de vidros, Quaisquer outros erros não associados à fabricação da película.',
   'Caso seja necessário aplicar a mudança de película proveniente de defeitos, a substituição não expande o período de garantia.',
 ];
 
