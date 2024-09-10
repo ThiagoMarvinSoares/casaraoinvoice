@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 export default function Home() {
@@ -38,7 +39,7 @@ export default function Home() {
         throw new Error('Falha ao gerar o PDF');
       }
     } catch (error) {
-      console.error('Erro ao gerar o PDF:', error);
+      console.error('Erro ao gerar o PDF: ERRO AQUI', error);
     }
   };
 
