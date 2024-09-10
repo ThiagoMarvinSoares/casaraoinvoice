@@ -1,5 +1,8 @@
+/* eslint-disable import/no-anonymous-default-export */
 import PDFDocument from 'pdfkit';
+import { useState } from 'react';
 import path from 'path';
+const fs = require('fs');
 
 const imagePath = path.join(process.cwd(), 'public/casaraoheader.jpg');
 const imagePathBotton = path.join(process.cwd(), 'public/casaraofooter.jpg');
@@ -31,18 +34,26 @@ const secondItems = [
   'Caso seja necessário aplicar a mudança de película proveniente de defeitos, a substituição não expande o período de garantia.',
 ];
 
-
 // Definindo a posição e tamanho do retângulo de fundo cinza
 const rectX = 50; // Posição X do retângulo
 const rectY = 610; // Posição Y do retângulo
 const rectWidth = 495.28; // Largura do retângulo (largura da página A4 - margens)
 const rectHeight = 160; // Altura do retângulo
 
+let counter;
+
+try {
+  const data = fs.readFileSync('counter.txt', 'utf-8');
+  counter = parseInt(data)
+} catch {
+  console.log('error reading counter file')
+}
 
 export default async (req, res) => {
   if (req.method === 'POST') {
 
     const produto = req.body.produto;
+    const numeroNota = counter;
     const marcaVeiculo = req.body.marcaVeiculo;
     const modelo = req.body.modelo;
     const placa = req.body.placa;
@@ -51,6 +62,16 @@ export default async (req, res) => {
     const nomeCliente = req.body.nomeCliente;
     const telefoneCliente = req.body.telefoneCliente;
     const emailCliente = req.body.emailCliente;
+
+    counter++;
+    console.log(`PDF generated. Total count: ${counter}`);
+    fs.writeFileSync('counter.txt', counter.toString(), (err) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(`PDF generated. Total count: ${counter}`);
+      }
+    });
 
 
     const doc = new PDFDocument({ size: 'A4' });
@@ -71,6 +92,7 @@ export default async (req, res) => {
       });
 
     doc.fontSize(12);
+    doc.fillColor('#dd2e38').fontSize(12).text(`Numero da nota: ${numeroNota}`, 55, 364);
     doc.fillColor('black').fontSize(12).text(`Produto: ${produto}`, 55, 400);
     doc.fillColor('black').fontSize(12).text(`Placa: ${placa}`, 55, 440);
     doc.fillColor('black').fontSize(12).text(`Período de garantia: ${periodoGarantia}`, 240, 440);
