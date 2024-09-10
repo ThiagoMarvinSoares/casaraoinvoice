@@ -1,7 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import PDFDocument from 'pdfkit';
 import path from 'path';
-const fs = require('fs');
 
 const imagePath = path.join(process.cwd(), 'public/casaraoheader.jpg');
 const imagePathBotton = path.join(process.cwd(), 'public/casaraofooter.jpg');
@@ -43,9 +42,9 @@ let counter;
 
 try {
   const data = fs.readFileSync('counter.txt', 'utf-8');
-  counter = parseInt(data)
-} catch {
-  console.log('error reading counter file')
+  counter = parseInt(data);
+} catch (error) {
+  console.log('Error reading counter file:', error.message);
 }
 
 export default async (req, res) => {
@@ -61,7 +60,7 @@ export default async (req, res) => {
     const nomeCliente = req.body.nomeCliente;
     const telefoneCliente = req.body.telefoneCliente;
     const emailCliente = req.body.emailCliente;
-
+    const fs = require('fs');
     counter++;
    
     const doc = new PDFDocument({ size: 'A4' });
