@@ -1,6 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
 import PDFDocument from 'pdfkit';
-import { useState } from 'react';
 import path from 'path';
 const fs = require('fs');
 
@@ -64,16 +63,7 @@ export default async (req, res) => {
     const emailCliente = req.body.emailCliente;
 
     counter++;
-    console.log(`PDF generated. Total count: ${counter}`);
-    fs.writeFileSync('counter.txt', counter.toString(), (err) => {
-      if (err) {
-        console.error(err);
-      } else {
-        console.log(`PDF generated. Total count: ${counter}`);
-      }
-    });
-
-
+   
     const doc = new PDFDocument({ size: 'A4' });
     doc.fontSize(12);
 
@@ -177,6 +167,13 @@ export default async (req, res) => {
 
       doc.image(imagePathBotton, 0, 640, { width: 595.28 });
 
+      fs.writeFileSync('counter.txt', counter.toString(), (err) => {
+        if (err) {
+          console.error(err);
+        } else {
+          console.log(`PDF generated. Total count: ${counter}`);
+        }
+      });
 
     doc.end();
 
